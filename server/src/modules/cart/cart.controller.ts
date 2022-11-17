@@ -10,6 +10,9 @@ interface CartItem extends Product {
 interface Cart {
   cartItems: CartItem[];
 }
+interface CartError{
+  message: string;
+}
 
 const initialCart = (indexes: number[]):Cart => ({
   cartItems: indexes.map((index)=> ({
@@ -35,20 +38,24 @@ export class CartController {
 
   @Post()
   @UseGuards(JwtAuthGuard)
-  async create(@Request() req, @Body() {id}:{id:string}): Promise<Cart> {
+  async create(@Request() req, @Body() {id}:{id:string}): Promise<Cart|CartError> {
     const cart = this.carts[req.user.userId];
     const cartItem = cart.cartItems.find(
-      (cartItem) => {
-        cartItem.id === parseInt(id);
-      }
+      c =>  c.id === parseInt(id)
     )
+
     if(cartItem){
       cartItem.quantity += 1;
     }else{
-      cart.cartItems.push({
-        ...products.find((products) => products.id === parseInt(id)),
-        quantity: 1
-      });
+      const findProduct = products.find((products) => products.id === parseInt(id));
+      if(findProduct){
+        cart.cartItems.push({
+          ...findProduct,
+          quantity: 1
+        });
+      }else{
+        return {message: "Not able to found in Product"}
+      }
     }
     return cart;
   }

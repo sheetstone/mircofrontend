@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { addToCart } from "cart/cart";
 
 import { getProducts, currency } from "./products";
 
@@ -15,11 +16,12 @@ export default function HomeContent() {
         <>
           <div key={product.id} className="flex-grow">
             <img src={product.image} alt={product.name} />
-            <div className="flex">
-              <div className="flex-grow">
+            <div className="">
+              <div className="text-lg">
                 <a>{product.name}</a>
               </div>
-              <div className="flex-end">{currency.format(product.price)}</div>
+              <div className="text-base">{currency.format(product.price)}</div>
+              <button className="btn btn-blue" onClick={(e)=>addToCart(product.id)}>Add to Cart</button>
             </div>
           </div>
         </>

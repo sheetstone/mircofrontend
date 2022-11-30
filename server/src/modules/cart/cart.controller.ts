@@ -39,6 +39,7 @@ export class CartController {
   @Post()
   @UseGuards(JwtAuthGuard)
   async create(@Request() req, @Body() {id}:{id:string}): Promise<Cart|CartError> {
+    console.log("This product is going to add into:"+id)
     const cart = this.carts[req.user.userId];
     const cartItem = cart.cartItems.find(
       c =>  c.id === parseInt(id)

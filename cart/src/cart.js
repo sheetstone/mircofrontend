@@ -34,6 +34,7 @@ export const addToCart = (id) =>
       getCart();
     });
 
+
 export function clearCart(){
   fetch(`${API_SERVER}/cart`, {
     method: "DELETE",

@@ -1,23 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { jwt, cart, clearCart } from "./cart";
+import MiniCart  from './MiniCart';
+import Login from './Login';
 
 import "./index.scss";
 
 export default function CartContent() {
   const [items, setItems] = useState(null);
+  const [jwtValue, setJwtValue] = useState(null);
 
   useEffect(() => {
-    setItems(cart.value?.cartItems);
-    return cart.subscribe((c) => {
-      setItems(c?.cartItems);
-    });
-  }
-  , []);
+    return jwt.subscribe((val)=>{
+      setJwtValue(val ?? "")
+    })
+  }, []);
 
-  console.log("items", items);
   return (
     <div>
-      JWT: {items}
+      JWT: {jwtValue}
+      <Login />
+      <MiniCart />
     </div>
   );
 }

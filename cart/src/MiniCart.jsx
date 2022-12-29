@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { cart, clearCart } from "./cart";
 import { currency } from "home/products";
+import "./index.scss";
 
 export default function MiniCart() {
   const [items, setItems] = useState(undefined);
@@ -25,12 +26,8 @@ export default function MiniCart() {
       {showCart && (
         <>
           <div
-            className="absolute p-5 border-4 border-blue-800 bg-white rounded-xl text-black"
-            style={{
-              width: 300,
-              top: "2rem",
-              left: -250,
-            }}
+            className="miniCart absolute p-5 border-4 border-blue-800 bg-white rounded-xl text-black"
+  
           >
             <div
               className="grid gap-3 text-sm"

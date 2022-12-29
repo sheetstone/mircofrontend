@@ -19,13 +19,8 @@ export default function Login() {
       </span>
       {showLogin && (
         <div
-        className="absolute p-5 border-4 border-blue-800 bg-white rounded-xl text-black"
-        style={{
-          width: 300,
-          top: "2rem",
-          left: -250,
-        }}
-      >
+        className="login absolute p-5 border-4 border-blue-800 bg-white rounded-xl text-black"
+        >
         <input
           type="text"
           placeholder="User Name"

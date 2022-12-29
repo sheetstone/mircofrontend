@@ -3,8 +3,9 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 
 const deps = require("./package.json").dependencies;
 module.exports = {
+  mode: 'production',
   output: {
-    publicPath: "http://localhost:8080/",
+    publicPath: "http://localhost:8083/",
   },
 
   resolve: {
@@ -12,7 +13,7 @@ module.exports = {
   },
 
   devServer: {
-    port: 8080,
+    port: 8083,
     historyApiFallback: true,
   },
 
@@ -41,17 +42,17 @@ module.exports = {
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "home",
+      name: "cart",
       filename: "remoteEntry.js",
       remotes: {
         home: "home@http://localhost:8080/remoteEntry.js",
         pdp: "pdp@http://localhost:8081/remoteEntry.js",
-        cart: "cart@https://sheetstone-mfa-bucket.s3.amazonaws.com/remoteEntry.js"
+        cart: "cart@http://localhost:8083/remoteEntry.js"
       },
       exposes: {
-        "./Header": "./src/Header.jsx",
-        "./Footer": "./src/Footer.jsx",
-        "./products": "./src/products.js"
+        "./cart": "./src/cart.js",
+        "./Login": "./src/Login.jsx",
+        "./MiniCart": "./src/MiniCart.jsx"
       },
       shared: {
         ...deps,

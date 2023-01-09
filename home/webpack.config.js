@@ -46,7 +46,7 @@ module.exports = {
       remotes: {
         home: "home@http://localhost:8080/remoteEntry.js",
         pdp: "pdp@http://localhost:8081/remoteEntry.js",
-        cart: "cart@https://sheetstone-mfa-bucket.s3.amazonaws.com/remoteEntry.js"
+        cart: "cart@http://localhost:8083/remoteEntry.js"
       },
       exposes: {
         "./Header": "./src/Header.jsx",

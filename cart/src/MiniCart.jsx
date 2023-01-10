@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { cart, clearCart } from "./cart";
+import { cart, clearCart } from "cart/cart";
 import { currency } from "home/products";
 import "./index.scss";
 

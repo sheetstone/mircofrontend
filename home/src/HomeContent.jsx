@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { addToCart } from "cart/cart";
 
 import { getProducts, currency } from "./products";
+import "./index.scss";
 
 export default function HomeContent() {
   const [products, setProducts] = useState([]);
@@ -10,13 +11,20 @@ export default function HomeContent() {
     getProducts().then(setProducts);
   }, []);
 
+  function redirect (event,id){
+    console.log(event.target.nodeName);
+    if (event.target.nodeName !== "BUTTON"){
+      window.open('http://localhost:8081/product/'+id, '_blank')
+    }
+  }
+
   return (
     <div className="my-10 grid grid-cols-4 gap-5">
       {products.map((product) => (
         <>
-          <div key={product.id} className="flex-grow">
+          <div key={product.id} className="flex-grow card" onClick={(e)=>redirect(e, product.id)}>
             <img src={product.image} alt={product.name} />
-            <div className="">
+            <div className="" >
               <div className="text-lg">
                 <a>{product.name}</a>
               </div>

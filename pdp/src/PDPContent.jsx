@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { getProductById, currency } from "home/products";
 import { useParams } from "react-router-dom";
+import  AddToCart from "./AddToCart";
 
 export default function PDPContent() {
-  const {id} = useParams();
+  const { id } = useParams();
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
@@ -30,6 +31,7 @@ export default function PDPContent() {
             <div className="font-bold text-3xl flex-grow">
               {currency.format(product.price)}
             </div>
+            <AddToCart id={product.id}/>
           </div>
           <div className="mt-10">{product.description}</div>
           <div className="mt-10">{product.longDescription}</div>

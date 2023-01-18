@@ -6,6 +6,7 @@ import  AddToCart from "./AddToCart";
 export default function PDPContent() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  
 
   useEffect(() => {
     if (id) {
